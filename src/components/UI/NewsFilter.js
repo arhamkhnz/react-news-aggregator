@@ -127,12 +127,12 @@ export default function NewsFilter({ onSearch, onFilter }) {
         <div className="relative w-full sm:w-1/6">
           <button
             onClick={handleSearch}
-            className="w-full bg-indigo-600 px-4 py-2 font-medium text-white hover:bg-indigo-700 "
+            className="w-full bg-indigo-600 px-4 py-2 font-medium text-white hover:bg-indigo-700"
           >
             Search
           </button>
         </div>
-        <Menu as="div" className="relative inline-block text-left ">
+        <Menu as="div" className="relative inline-block text-left">
           <div>
             <MenuButton className="inline-flex h-10 w-full justify-between rounded-r-md border border-gray-300 bg-white p-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 ">
               <EllipsisVerticalIcon className="size-5" aria-hidden="true" />
