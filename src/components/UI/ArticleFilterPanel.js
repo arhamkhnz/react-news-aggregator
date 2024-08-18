@@ -24,9 +24,11 @@ export default function ArticleFilterPanel() {
   }
 
   const handleSearch = () => {
-    updateFilter("keyword", keyword)
-    updateFilter("category", selectedCategory)
-    updateFilter("source", selectedSource)
+    updateFilter({
+      keyword: keyword,
+      category: selectedCategory,
+      source: selectedSource,
+    })
   }
 
   const handleSavePreferences = () => {
@@ -43,7 +45,7 @@ export default function ArticleFilterPanel() {
             value={keyword}
             onChange={handleSearchChange}
             placeholder="Search news..."
-            className="h-10 w-full rounded-md border border-gray-300 px-4 py-2 shadow-sm md:rounded-r-none md:border-r-0"
+            className="h-10 w-full rounded-md border border-gray-300 px-4 py-2 shadow-sm focus:outline-none md:rounded-r-none md:border-r-0"
           />
         </div>
 

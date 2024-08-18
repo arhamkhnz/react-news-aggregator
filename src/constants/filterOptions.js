@@ -8,9 +8,10 @@ export const sources = [
 export const categories = [
   { label: "World", value: "world" },
   { label: "Business", value: "business" },
-  { label: "Entertainment", value: "entertainment" },
+  { label: "Food", value: "food" },
   { label: "Health", value: "health" },
   { label: "Science", value: "science" },
   { label: "Sports", value: "sports" },
   { label: "Technology", value: "technology" },
+  { label: "Movies", value: "movies" },
 ]

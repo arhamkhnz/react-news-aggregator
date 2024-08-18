@@ -16,12 +16,11 @@ export const FilterProvider = ({ children }) => {
     }
   }, [])
 
-  const updateFilter = (filterType, value) => {
-    const newFilters = {
-      ...filters,
-      [filterType]: value,
-    }
-    setFilters(newFilters)
+  const updateFilter = (newFilters) => {
+    setFilters((prevFilters) => ({
+      ...prevFilters,
+      ...newFilters,
+    }))
   }
 
   const saveUserPreferences = () => {

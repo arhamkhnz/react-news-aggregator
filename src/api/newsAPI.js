@@ -1,10 +1,14 @@
 import axios from "axios"
 import { normalizeArticle } from "../utils/articleHelpers"
 
-export const fetchNewsAPIArticles = async (params = "") => {
+export const fetchNewsAPIArticles = async (filters = {}) => {
   const apiKey = process.env.REACT_APP_NEWS_API_KEY
-  const url = `https://newsapi.org/v2/everything?apiKey=${apiKey}&q=world`
+  const { category = "", keyword = "" } = filters
+  const baseUrl = "https://newsapi.org/v2/"
 
+  const endpoint = keyword ? `everything?q=${encodeURIComponent(keyword)}` : `top-headlines?category=${category}`
+
+  const url = `${baseUrl}${endpoint}&apiKey=${apiKey}&language=en&pageSize=25`
   try {
     const response = await axios.get(url)
     return response.data.articles.map((article) => normalizeArticle(article, "newsapi"))
