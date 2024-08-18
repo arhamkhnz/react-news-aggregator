@@ -16,17 +16,22 @@ export default function HomePage() {
 
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true)
       try {
         const results = await searchAndFilterArticles(filters)
-        setFeedData(results)
+        if (results.length > 0) {
+          setFeedData(results)
+          setLoading(false)
+        } else {
+          // console.log("Still loading...")
+        }
       } catch (error) {
-        console.error("Error fetching articles:", error)
-      } finally {
+        // console.error("Error fetching articles:", error)
         setLoading(false)
       }
     }
 
-    // fetchData()
+    fetchData()
   }, [filters])
 
   const heroArticles = feedData.slice(0, 5)

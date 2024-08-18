@@ -14,7 +14,7 @@ export default function CustomListbox({
     <Listbox value={selectedOption} onChange={onChange}>
       <ListboxButton
         className={clsx(
-          "relative block h-10 w-full border border-r-0 border-gray-300 bg-white py-1.5 pl-3 pr-8 text-left text-sm/6",
+          "relative block h-10 w-full rounded-md border border-gray-300 bg-white py-1.5 pl-3 pr-8 text-left text-sm/6 md:rounded-none md:border-r-0",
           "focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25",
         )}
       >
@@ -28,7 +28,7 @@ export default function CustomListbox({
         anchor="bottom"
         transition
         className={clsx(
-          "mt-0.5 w-[var(--button-width)] rounded-xl border border-gray-300 bg-white p-1 [--anchor-gap:var(--spacing-1)] focus:outline-none",
+          "z-30 mt-0.5 w-[var(--button-width)] rounded-xl border border-gray-300 bg-white p-1 [--anchor-gap:var(--spacing-1)] focus:outline-none",
           "transition duration-100 ease-in data-[leave]:data-[closed]:opacity-0",
         )}
       >

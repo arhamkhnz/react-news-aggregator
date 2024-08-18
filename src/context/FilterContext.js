@@ -22,9 +22,13 @@ export const FilterProvider = ({ children }) => {
       [filterType]: value,
     }
     setFilters(newFilters)
-
-    localStorage.setItem("userPreferences", JSON.stringify(newFilters))
   }
 
-  return <FilterContext.Provider value={{ filters, updateFilter }}>{children}</FilterContext.Provider>
+  const saveUserPreferences = () => {
+    localStorage.setItem("userPreferences", JSON.stringify(filters))
+  }
+
+  return (
+    <FilterContext.Provider value={{ filters, updateFilter, saveUserPreferences }}>{children}</FilterContext.Provider>
+  )
 }

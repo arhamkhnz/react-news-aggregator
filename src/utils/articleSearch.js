@@ -10,7 +10,6 @@ export const searchAndFilterArticles = async (filters) => {
     const guardianData = await fetchGuardianArticles()
     const newsAPIData = await fetchNewsAPIArticles()
     results = [...nyTimesData, ...guardianData, ...newsAPIData]
-    console.log(results)
   } else {
     // Query single source based on filter
     switch (filters.source) {
@@ -29,13 +28,13 @@ export const searchAndFilterArticles = async (filters) => {
   }
 
   // Optionally filter results further by category or keyword
-  if (filters.category) {
-    results = results.filter((article) => article.category === filters.category)
-  }
+  // if (filters.category) {
+  //   results = results.filter((article) => article.category === filters.category)
+  // }
 
-  if (filters.keyword) {
-    results = results.filter((article) => article.title.includes(filters.keyword))
-  }
+  // if (filters.keyword) {
+  //   results = results.filter((article) => article.title.includes(filters.keyword))
+  // }
 
   return results
 }
