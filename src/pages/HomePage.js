@@ -15,7 +15,9 @@ export default function HomePage() {
         const guardianData = await fetchGuardianArticles()
         const newsAPIData = await fetchNewsAPIArticles()
 
-        const combinedData = [...nyTimesData, ...guardianData, ...newsAPIData]
+        let combinedData = [...nyTimesData, ...guardianData, ...newsAPIData]
+
+        combinedData = combinedData.sort(() => Math.random() - 0.5)
 
         setFeedData(combinedData)
       } catch (error) {

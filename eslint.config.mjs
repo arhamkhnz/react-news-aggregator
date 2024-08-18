@@ -7,7 +7,15 @@ import configPrettier from "eslint-config-prettier"
 
 export default [
   { files: ["**/*.{js,mjs,cjs,jsx}"] },
-  { languageOptions: { globals: globals.browser } },
+  {
+    languageOptions: {
+      globals: {
+        ...globals.browser,
+        process: "readonly",
+        module: "readonly",
+      },
+    },
+  },
   pluginJs.configs.recommended,
   pluginReact.configs.flat.recommended,
   configPrettier,
@@ -21,6 +29,7 @@ export default [
       "react/react-in-jsx-scope": "off",
       "no-unused-vars": "warn",
       "prettier/prettier": "warn",
+      "react/prop-types": "off",
     },
     settings: {
       react: {
