@@ -43,7 +43,7 @@ export default function NewsFilter({ onSearch, onFilter }) {
               </MenuButton>
             </div>
             <TransitionWrapper>
-              <MenuItems className="absolute z-10 mt-2 w-full rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5">
+              <MenuItems className="absolute z-10 mt-2 w-full rounded-md bg-white shadow-lg ring-1 ring-black/5">
                 <div className="py-1">
                   {categories.map((category) => (
                     <MenuItem key={category}>
@@ -75,7 +75,7 @@ export default function NewsFilter({ onSearch, onFilter }) {
               </MenuButton>
             </div>
             <TransitionWrapper>
-              <MenuItems className="absolute z-10 mt-2 w-full rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 ">
+              <MenuItems className="absolute z-10 mt-2 w-full rounded-md bg-white shadow-lg ring-1 ring-black/5">
                 <div className="py-1">
                   {sources.map((source) => (
                     <MenuItem key={source}>
@@ -113,7 +113,7 @@ export default function NewsFilter({ onSearch, onFilter }) {
             </MenuButton>
           </div>
           <TransitionWrapper>
-            <MenuItems className="absolute z-10 mt-2 w-24 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 ">
+            <MenuItems className="absolute z-10 mt-2 w-24 rounded-md bg-white shadow-lg ring-1 ring-black/5">
               <div className="py-1">
                 {sources.map((source) => (
                   <MenuItem key={source}>

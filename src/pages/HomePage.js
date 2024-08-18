@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, Suspense } from "react"
 import NewsFilter from "../components/UI/NewsFilter"
 import HeroGrid from "../components/UI/HeroGrid"
 import FeedCard from "../components/UI/FeedCard"
@@ -10,8 +10,13 @@ import { fetchGuardianArticles } from "../api/guardianAPI"
 
 import { filterRemovedEntries } from "../utils/articleHelpers"
 
+import HeroGridSkeleton from "../components/UI/skeletons/HeroGridSkeleton"
+import FeedCardSkeleton from "../components/UI/skeletons/FeedCardSkeleton"
+import ArticleListSidebarSkeleton from "../components/UI/skeletons/ArticleListSidebarSkeleton"
+
 export default function HomePage() {
   const [feedData, setFeedData] = useState([])
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -31,6 +36,8 @@ export default function HomePage() {
         setFeedData(combinedData)
       } catch (error) {
         console.error("Error fetching articles:", error)
+      } finally {
+        setLoading(false)
       }
     }
 
@@ -45,7 +52,9 @@ export default function HomePage() {
     <>
       {/* <NewsFilter /> */}
 
-      <HeroGrid articles={heroArticles} />
+      <Suspense fallback={<HeroGridSkeleton />}>
+        {loading ? <HeroGridSkeleton /> : <HeroGrid articles={heroArticles} />}
+      </Suspense>
 
       <div className="mt-10 flex flex-row flex-wrap">
         <div className="w-full lg:w-2/3">
@@ -57,13 +66,19 @@ export default function HomePage() {
           </div>
 
           <div className="flex flex-row flex-wrap">
-            {otherArticles.map((article, index) => (
-              <FeedCard key={index} article={article} />
-            ))}
+            {loading
+              ? Array.from({ length: 6 }, (_, index) => <FeedCardSkeleton key={index} />)
+              : otherArticles.map((article, index) => <FeedCard key={index} article={article} />)}
           </div>
         </div>
 
-        <ArticleListSidebar title="Catch up on The New York Times" articles={nyTimesArticles} />
+        <Suspense fallback={<ArticleListSidebarSkeleton />}>
+          {loading ? (
+            <ArticleListSidebarSkeleton />
+          ) : (
+            <ArticleListSidebar title="Catch up on The New York Times" articles={nyTimesArticles} />
+          )}
+        </Suspense>
       </div>
     </>
   )
