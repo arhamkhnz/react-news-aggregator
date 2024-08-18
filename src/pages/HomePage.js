@@ -1,39 +1,24 @@
-import React, { useState, useEffect, Suspense } from "react"
-import NewsFilter from "../components/UI/NewsFilter"
+import React, { useState, useEffect, Suspense, useContext } from "react"
+import ArticleFilterPanel from "../components/UI/ArticleFilterPanel"
 import HeroGrid from "../components/UI/HeroGrid"
 import FeedCard from "../components/UI/FeedCard"
 import ArticleListSidebar from "../components/UI/ArticleListSidebar"
-
-import { fetchNewsAPIArticles } from "../api/newsAPI"
-import { fetchNYTimesArticles } from "../api/nyTimesAPI"
-import { fetchGuardianArticles } from "../api/guardianAPI"
-
-import { filterRemovedEntries } from "../utils/articleHelpers"
-
+import { searchAndFilterArticles } from "../utils/articleSearch"
+import { FilterContext } from "../context/FilterContext"
 import HeroGridSkeleton from "../components/UI/skeletons/HeroGridSkeleton"
 import FeedCardSkeleton from "../components/UI/skeletons/FeedCardSkeleton"
 import ArticleListSidebarSkeleton from "../components/UI/skeletons/ArticleListSidebarSkeleton"
 
 export default function HomePage() {
+  const { filters } = useContext(FilterContext)
   const [feedData, setFeedData] = useState([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const nyTimesData = await fetchNYTimesArticles()
-        const guardianData = await fetchGuardianArticles()
-        const newsAPIData = await fetchNewsAPIArticles()
-
-        let combinedData = [...nyTimesData, ...guardianData, ...newsAPIData]
-
-        // Filter out '[Removed]' entries
-        combinedData = filterRemovedEntries(combinedData)
-
-        // Randomize the combined data
-        combinedData = combinedData.sort(() => Math.random() - 0.5)
-
-        setFeedData(combinedData)
+        const results = await searchAndFilterArticles(filters)
+        setFeedData(results)
       } catch (error) {
         console.error("Error fetching articles:", error)
       } finally {
@@ -41,8 +26,8 @@ export default function HomePage() {
       }
     }
 
-    fetchData()
-  }, [])
+    // fetchData()
+  }, [filters])
 
   const heroArticles = feedData.slice(0, 5)
   const otherArticles = feedData.slice(5)
@@ -50,7 +35,7 @@ export default function HomePage() {
 
   return (
     <>
-      {/* <NewsFilter /> */}
+      <ArticleFilterPanel />
 
       <Suspense fallback={<HeroGridSkeleton />}>
         {loading ? <HeroGridSkeleton /> : <HeroGrid articles={heroArticles} />}
