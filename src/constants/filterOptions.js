@@ -1,6 +1,5 @@
 export const sources = [
   { label: "All", value: "all" },
-  { label: "News API", value: "newsapi" },
   { label: "The Guardian", value: "guardian" },
   { label: "New York Times", value: "nytimes" },
 ]
