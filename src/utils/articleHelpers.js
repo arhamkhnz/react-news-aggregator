@@ -1,10 +1,10 @@
-const normalizeArticle = (article, source) => {
+export const normalizeArticle = (article, source) => {
   switch (source) {
     case "nytimes":
       return {
         title: article.title,
         description: article.abstract,
-        imageSrc: article.multimedia.length ? article.multimedia[0].url : "default-image-url",
+        imageSrc: article.multimedia.length ? article.multimedia[0].url : "/assets/no-image.webp",
         category: article.section_name || "General",
         section: article.section,
         subSection: article.subSection,
@@ -14,7 +14,7 @@ const normalizeArticle = (article, source) => {
       return {
         title: article.title,
         description: article.description,
-        imageSrc: article.urlToImage || "default-image-url",
+        imageSrc: article.urlToImage || "/assets/no-image.webp",
         category: article.source.name || "General",
         createdAt: article.publishedAt,
       }
@@ -22,7 +22,7 @@ const normalizeArticle = (article, source) => {
       return {
         title: article.fields.headline,
         description: article.fields.trailText || article.fields.headline,
-        imageSrc: article.fields.thumbnail || "default-image-url",
+        imageSrc: article.fields.thumbnail || "/assets/no-image.webp",
         category: article.sectionName || "General",
         section: article.sectionName,
         subSection: article.subSection,
@@ -33,4 +33,9 @@ const normalizeArticle = (article, source) => {
   }
 }
 
-export default normalizeArticle
+export const filterRemovedEntries = (articles) => {
+  return articles.filter((article) => {
+    const { title, description } = article
+    return !title.includes("[Removed]") && !description.includes("[Removed]")
+  })
+}

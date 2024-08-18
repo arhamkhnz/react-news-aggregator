@@ -1,5 +1,5 @@
 import axios from "axios"
-import normalizeArticle from "../utils/normalizeArticle"
+import { normalizeArticle } from "../utils/articleHelpers"
 
 export const fetchNYTimesArticles = async (params = "") => {
   const apiKey = process.env.REACT_APP_NY_TIMES_API_KEY
