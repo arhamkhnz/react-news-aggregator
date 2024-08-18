@@ -38,7 +38,7 @@ export default function HomePage() {
 
   const heroArticles = feedData.slice(0, 5)
   const otherArticles = feedData.slice(5)
-  const nyTimesArticles = feedData.slice(0, 5)
+  const topNewsArticles = feedData.slice(0, 5)
 
   return (
     <>
@@ -68,7 +68,7 @@ export default function HomePage() {
           {loading ? (
             <ArticleListSidebarSkeleton />
           ) : (
-            <ArticleListSidebar title="Catch up on The New York Times" articles={nyTimesArticles} />
+            <ArticleListSidebar title="Catch Up on Top News" articles={topNewsArticles} />
           )}
         </Suspense>
       </div>
