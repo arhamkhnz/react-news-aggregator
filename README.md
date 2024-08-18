@@ -3,7 +3,7 @@
 ## Overview
 News Aggregator is a React-based application designed to aggregate news from multiple sources, including The Guardian, The New York Times, and other major news outlets. The application is fully containerized using Docker and styled with Tailwind CSS.
 
-> **Note:** In the demo deployed on Vercel, the NewsAPI functionality is disabled due to request limitations. Specifically, requests from the browser are not allowed on the Developer plan, except from localhost. To fully experience the application, please clone the repository and run it locally. Be sure to add your own API key in the `.env` file to enable the NewsAPI integration.
+> **Note:** The demo deployed on Vercel is based on the `demo-deployment` branch, where the NewsAPI functionality is disabled due to request limitations. Specifically, requests from the browser are not allowed on the Developer plan, except from localhost. To fully experience the application with all features enabled, please clone the `main` branch of the repository and run it locally. Be sure to add your own API keys in the `.env` file to enable the API's integration.
 
 ## Table of Contents
 - [Folder Structure](#folder-structure)
