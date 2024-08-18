@@ -1,6 +1,6 @@
-import React from "react";
-import Header from "./layout/Header";
-import Footer from "./layout/Footer";
+import React from "react"
+import Header from "./layout/Header"
+import Footer from "./layout/Footer"
 
 export default function Layout({ children }) {
   return (
@@ -11,5 +11,5 @@ export default function Layout({ children }) {
       </main>
       {/* <Footer /> */}
     </>
-  );
+  )
 }

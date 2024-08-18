@@ -1,7 +1,7 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Layout from "./components/Layout";
-import HomePage from "./pages/HomePage";
-import NotFoundPage from "./pages/NotFoundPage";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import Layout from "./components/Layout"
+import HomePage from "./pages/HomePage"
+import NotFoundPage from "./pages/NotFoundPage"
 
 function App() {
   return (
@@ -13,7 +13,7 @@ function App() {
         </Routes>
       </Layout>
     </Router>
-  );
+  )
 }
 
-export default App;
+export default App

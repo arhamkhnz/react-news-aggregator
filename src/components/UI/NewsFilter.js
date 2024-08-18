@@ -1,39 +1,23 @@
-import React, { useState } from "react";
-import {
-  Menu,
-  Input,
-  MenuButton,
-  MenuItems,
-  MenuItem,
-} from "@headlessui/react";
-import {
-  ChevronDownIcon,
-  EllipsisVerticalIcon,
-} from "@heroicons/react/16/solid";
-import TransitionWrapper from "./TransitionWrapper";
+import React, { useState } from "react"
+import { Menu, Input, MenuButton, MenuItems, MenuItem } from "@headlessui/react"
+import { ChevronDownIcon, EllipsisVerticalIcon } from "@heroicons/react/16/solid"
+import TransitionWrapper from "./TransitionWrapper"
 
-const categories = [
-  "Business",
-  "Entertainment",
-  "Health",
-  "Science",
-  "Sports",
-  "Technology",
-];
-const sources = ["News API", "The Guardian", "New York Times"];
+const categories = ["Business", "Entertainment", "Health", "Science", "Sports", "Technology"]
+const sources = ["News API", "The Guardian", "New York Times"]
 
 function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
+  return classes.filter(Boolean).join(" ")
 }
 
 export default function NewsFilter({ onSearch, onFilter }) {
-  const [selectedCategory, setSelectedCategory] = useState("");
-  const [selectedSource, setSelectedSource] = useState("");
-  const [keyword, setKeyword] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("")
+  const [selectedSource, setSelectedSource] = useState("")
+  const [keyword, setKeyword] = useState("")
 
   const handleSearch = () => {
-    onSearch(keyword, selectedCategory, selectedSource);
-  };
+    onSearch(keyword, selectedCategory, selectedSource)
+  }
 
   return (
     <div className="py-6">
@@ -55,10 +39,7 @@ export default function NewsFilter({ onSearch, onFilter }) {
             <div>
               <MenuButton className="inline-flex  h-10 w-full justify-between border border-r-0 border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 ">
                 {selectedCategory || "Select Category"}
-                <ChevronDownIcon
-                  className="-mr-1 ml-2 size-5"
-                  aria-hidden="true"
-                />
+                <ChevronDownIcon className="-mr-1 ml-2 size-5" aria-hidden="true" />
               </MenuButton>
             </div>
             <TransitionWrapper>
@@ -70,10 +51,8 @@ export default function NewsFilter({ onSearch, onFilter }) {
                         <button
                           onClick={() => setSelectedCategory(category)}
                           className={classNames(
-                            active
-                              ? "bg-gray-100 text-gray-900"
-                              : "text-gray-700",
-                            "block px-4 py-2 text-sm w-full text-left"
+                            active ? "bg-gray-100 text-gray-900" : "text-gray-700",
+                            "block px-4 py-2 text-sm w-full text-left",
                           )}
                         >
                           {category}
@@ -92,10 +71,7 @@ export default function NewsFilter({ onSearch, onFilter }) {
             <div>
               <MenuButton className="inline-flex h-10 w-full justify-between border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50">
                 {selectedSource || "Select Source"}
-                <ChevronDownIcon
-                  className="-mr-1 ml-2 size-5"
-                  aria-hidden="true"
-                />
+                <ChevronDownIcon className="-mr-1 ml-2 size-5" aria-hidden="true" />
               </MenuButton>
             </div>
             <TransitionWrapper>
@@ -107,10 +83,8 @@ export default function NewsFilter({ onSearch, onFilter }) {
                         <button
                           onClick={() => setSelectedSource(source)}
                           className={classNames(
-                            active
-                              ? "bg-gray-100 text-gray-900"
-                              : "text-gray-700",
-                            "block px-4 py-2 text-sm w-full text-left"
+                            active ? "bg-gray-100 text-gray-900" : "text-gray-700",
+                            "block px-4 py-2 text-sm w-full text-left",
                           )}
                         >
                           {source}
@@ -147,10 +121,8 @@ export default function NewsFilter({ onSearch, onFilter }) {
                       <button
                         onClick={() => setSelectedSource(source)}
                         className={classNames(
-                          active
-                            ? "bg-gray-100 text-gray-900"
-                            : "text-gray-700",
-                          "block px-4 py-2 text-sm w-full text-left"
+                          active ? "bg-gray-100 text-gray-900" : "text-gray-700",
+                          "block px-4 py-2 text-sm w-full text-left",
                         )}
                       >
                         {source}
@@ -164,5 +136,5 @@ export default function NewsFilter({ onSearch, onFilter }) {
         </Menu>
       </div>
     </div>
-  );
+  )
 }
