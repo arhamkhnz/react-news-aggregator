@@ -8,6 +8,7 @@ import { FilterContext } from "../context/FilterContext"
 import HeroGridSkeleton from "../components/UI/skeletons/HeroGridSkeleton"
 import FeedCardSkeleton from "../components/UI/skeletons/FeedCardSkeleton"
 import ArticleListSidebarSkeleton from "../components/UI/skeletons/ArticleListSidebarSkeleton"
+import toast from "react-hot-toast"
 
 export default function HomePage() {
   const { filters } = useContext(FilterContext)
@@ -27,6 +28,7 @@ export default function HomePage() {
         }
       } catch (error) {
         // console.error("Error fetching articles:", error)
+        toast.error(error.message)
         setLoading(false)
       }
     }

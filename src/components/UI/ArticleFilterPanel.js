@@ -1,9 +1,10 @@
 import React, { useState, useContext } from "react"
-import { Button } from "@headlessui/react"
+import { Button, Input } from "@headlessui/react"
 import { FilterContext } from "../../context/FilterContext"
 import { categories, sources } from "../../constants/filterOptions"
 import CustomListbox from "./HeadlessUI/CustomListbox"
 import { BookmarkIcon } from "@heroicons/react/24/outline"
+import toast from "react-hot-toast"
 
 export default function ArticleFilterPanel() {
   const { updateFilter, filters, saveUserPreferences } = useContext(FilterContext)
@@ -32,28 +33,29 @@ export default function ArticleFilterPanel() {
   }
 
   const handleSavePreferences = () => {
-    saveUserPreferences()
+    saveUserPreferences(selectedCategory, selectedSource)
+    toast.success("User Preferences Saved Successfully!")
   }
 
   return (
     <div className="py-6 sm:px-4 lg:px-0">
       <div className="flex flex-col items-center justify-between md:flex-row">
-        <div className="relative mb-4 w-full md:mb-0 md:w-1/3">
-          <input
+        <div className="mb-4 w-full md:mb-0 md:w-1/3">
+          <Input
             name="keyword"
             type="text"
             value={keyword}
             onChange={handleSearchChange}
             placeholder="Search news..."
-            className="h-10 w-full rounded-md border border-gray-300 px-4 py-2 shadow-sm focus:outline-none md:rounded-r-none md:border-r-0"
+            className="h-10 w-full rounded-md border border-gray-300 px-4 py-2 text-sm shadow-sm focus:outline-none md:rounded-r-none md:border-r-0"
           />
         </div>
 
-        <div className="relative mb-4 w-full md:mb-0 md:w-1/4">
+        <div className="mb-4 w-full md:mb-0 md:w-1/4">
           <CustomListbox options={categories} selectedOption={selectedCategory} onChange={handleCategoryChange} />
         </div>
 
-        <div className="relative mb-4 w-full md:mb-0 md:w-1/4">
+        <div className="mb-4 w-full md:mb-0 md:w-1/4">
           <CustomListbox options={sources} selectedOption={selectedSource} onChange={handleSourceChange} />
         </div>
 

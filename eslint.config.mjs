@@ -6,11 +6,12 @@ import pluginPrettier from "eslint-plugin-prettier"
 import configPrettier from "eslint-config-prettier"
 
 export default [
-  { files: ["**/*.{js,mjs,cjs,jsx}"] },
+  { files: ["**/*.{js,mjs,cjs,jsx}"], ignores: ["node_modules/", "dist/", "build/"] },
   {
     languageOptions: {
       globals: {
         ...globals.browser,
+        ...globals.jest,
         process: "readonly",
         module: "readonly",
       },

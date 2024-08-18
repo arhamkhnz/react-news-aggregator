@@ -4,7 +4,6 @@ import { fetchNewsAPIArticles } from "../api/newsAPI"
 
 export const searchAndFilterArticles = async (filters) => {
   let results = []
-  console.log(filters)
   if (filters.source === "all") {
     const nyTimesData = await fetchNYTimesArticles(filters)
     const guardianData = await fetchGuardianArticles(filters)
@@ -24,6 +23,10 @@ export const searchAndFilterArticles = async (filters) => {
       default:
         break
     }
+  }
+
+  if (results.length === 0) {
+    throw new Error("No articles found for the selected filters. Displaying the most recent available articles.")
   }
 
   return results

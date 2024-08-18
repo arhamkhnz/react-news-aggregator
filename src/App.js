@@ -2,17 +2,21 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import Layout from "./components/Layout"
 import HomePage from "./pages/HomePage"
 import NotFoundPage from "./pages/NotFoundPage"
+import { Toaster } from "react-hot-toast"
 
 function App() {
   return (
-    <Router>
-      <Layout>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="*" element={<NotFoundPage />} />
-        </Routes>
-      </Layout>
-    </Router>
+    <>
+      <Toaster position="top-center" />
+      <Router>
+        <Layout>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="*" element={<NotFoundPage />} />
+          </Routes>
+        </Layout>
+      </Router>
+    </>
   )
 }
 

@@ -1,20 +1,16 @@
-import React, { createContext, useState, useEffect } from "react"
+import React, { createContext, useState } from "react"
 
 export const FilterContext = createContext()
 
 export const FilterProvider = ({ children }) => {
-  const [filters, setFilters] = useState({
-    keyword: "",
-    category: "world",
-    source: "all",
-  })
-
-  useEffect(() => {
-    const savedFilters = JSON.parse(localStorage.getItem("userPreferences"))
-    if (savedFilters) {
-      setFilters(savedFilters)
+  const [filters, setFilters] = useState(() => {
+    const savedFilters = JSON.parse(localStorage.getItem("userPreferences")) || {}
+    return {
+      keyword: "",
+      category: savedFilters.category || "world",
+      source: savedFilters.source || "all",
     }
-  }, [])
+  })
 
   const updateFilter = (newFilters) => {
     setFilters((prevFilters) => ({
@@ -23,8 +19,9 @@ export const FilterProvider = ({ children }) => {
     }))
   }
 
-  const saveUserPreferences = () => {
-    localStorage.setItem("userPreferences", JSON.stringify(filters))
+  const saveUserPreferences = (category, source) => {
+    const preferencesToSave = { category, source }
+    localStorage.setItem("userPreferences", JSON.stringify(preferencesToSave))
   }
 
   return (

@@ -13,6 +13,7 @@ export const normalizeArticle = (article, source) => {
         section: article.section,
         subSection: article.subSection,
         createdAt: article.created_date,
+        url: article.url,
       }
     case "newsapi":
       return {
@@ -21,6 +22,7 @@ export const normalizeArticle = (article, source) => {
         imageSrc: article.urlToImage || "/assets/no-image.webp",
         category: article.source.name || "General",
         createdAt: article.publishedAt,
+        url: article.url,
       }
     case "guardian":
       return {
@@ -31,6 +33,7 @@ export const normalizeArticle = (article, source) => {
         section: article.sectionName,
         subSection: article.subSection,
         createdAt: article.webPublicationDate,
+        url: article.webUrl,
       }
     default:
       throw new Error("Unknown source")
